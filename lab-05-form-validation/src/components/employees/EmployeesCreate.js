@@ -9,10 +9,28 @@ import * as EmployeeActions from '../../actions/EmployeeActionCreator';
 import { withRouter } from 'react-router';
 
 class EmployeesCreate extends Component {
-  // TODO - implement me
+  constructor(props) {
+    super(props);
+    this.handleSave = this.handleSave.bind(this);
+  }
+
+  handleSave(employee){
+    this.props.actions.createEmployee(employee).then(() => {
+      this.props.history.push('');
+    });
+  }
 
   render() {
-    return <div />;
+    return (
+      <Grid>
+        <Row>
+          <PageHeader>Timesheet Create</PageHeader>
+        </Row>
+        <Row>
+          <EmployeeForm employees={this.props.employees} handleSave={this.handleSave}/>
+        </Row>
+      </Grid>
+    );
   }
 }
 
